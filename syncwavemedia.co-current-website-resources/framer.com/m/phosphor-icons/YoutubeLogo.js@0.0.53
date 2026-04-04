@@ -1,0 +1,8 @@
+/*
+ * YoutubeLogo (phosphor-icons/YoutubeLogo@0.0.53)
+ *
+ * Learn More: https://www.framer.com/asset-urls
+ */
+
+export * from "https://framerusercontent.com/modules/9n1m4SYYjOmzvdghRTnQ/5eCwHQczr9R2OV4cf5qc/YoutubeLogo.js"
+export { default } from "https://framerusercontent.com/modules/9n1m4SYYjOmzvdghRTnQ/5eCwHQczr9R2OV4cf5qc/YoutubeLogo.js"

@@ -1,0 +1,8 @@
+/*
+ * FacebookLogo (phosphor-icons/FacebookLogo@0.0.53)
+ *
+ * Learn More: https://www.framer.com/asset-urls
+ */
+
+export * from "https://framerusercontent.com/modules/2J76pymEci37RJeTKbRe/oOM2l3KYAwWTdFDM1vCg/FacebookLogo.js"
+export { default } from "https://framerusercontent.com/modules/2J76pymEci37RJeTKbRe/oOM2l3KYAwWTdFDM1vCg/FacebookLogo.js"
