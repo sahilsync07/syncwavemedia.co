@@ -503,14 +503,14 @@ button {
 }
 
 /* Introducing Us */
-.v-grid {
+.video-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-top: 48px;
 }
 
-.v-card {
+.video-card {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -520,13 +520,19 @@ button {
   transition: var(--transition-smooth);
 }
 
-.v-card:hover {
+.video-card-inner {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.video-card:hover {
   transform: translateY(-8px);
   border-color: var(--accent);
   box-shadow: 0 20px 40px rgba(183, 70, 255, 0.2);
 }
 
-.v-preview {
+.video-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -534,51 +540,108 @@ button {
   transition: transform 0.5s ease;
 }
 
-.v-card:hover .v-preview {
+.video-card:hover img {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-.v-overlay {
+.video-card-overlay {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
 }
 
-.v-label {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  margin-bottom: 8px;
+.video-card-info {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
 }
 
-.v-views {
+.video-card h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  margin-bottom: 4px;
+  text-transform: none;
+}
+
+.video-card .views {
   font-size: 14px;
   color: var(--accent);
   font-weight: 600;
 }
 
-/* Customer Story & Stats */
-.stats-grid {
+/* Customer Story */
+.testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 64px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 80px;
 }
 
-.stat-card {
-  padding: 32px;
+.testimonial-card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.testimonial-card .quote {
+  font-size: 18px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.speaker-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.speaker-profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.speaker-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.speaker-info span {
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* Stats Section */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.stat-box {
+  padding: 40px;
   text-align: center;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px;
 }
 
 .stat-value {
   display: block;
-  font-size: 48px;
+  font-size: 64px;
   font-family: var(--font-heading);
-  color: var(--text-primary);
+  color: white;
   margin-bottom: 8px;
 }
 
@@ -590,7 +653,7 @@ button {
 }
 
 /* Why Work With Us */
-.chips-container {
+.badge-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -606,7 +669,17 @@ button {
   border-radius: 50px;
   font-size: 16px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   transition: var(--transition-smooth);
+}
+
+.badge-chip .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
 }
 
 .badge-chip:hover {
