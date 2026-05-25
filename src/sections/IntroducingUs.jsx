@@ -15,34 +15,30 @@ const IntroducingUs = () => {
   const shorts = [
     {
       id: 1,
-      title: "AI Podcast Production Engine",
-      views: "120K Views",
-      image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&q=80",
-      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-headphones-lying-on-a-sound-mixer-cabinet-4861-large.mp4",
+      title: "Business Without Bullsh-t",
+      views: "60K+ Views",
+      wistiaId: "wwlq9568h8",
       platform: "YouTube"
     },
     {
       id: 2,
-      title: "VC Roundtable Series",
-      views: "98K Views",
-      image: "https://images.unsplash.com/photo-1542744094-3a31f103e35f?w=400&q=80",
-      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-business-people-having-a-meeting-around-a-table-32531-large.mp4",
+      title: "Naftali Moses",
+      views: "300K+ Views",
+      wistiaId: "1dewosnj6d",
       platform: "LinkedIn"
     },
     {
       id: 3,
-      title: "Tech CEO Spotlight",
-      views: "340K Views",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=80",
-      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-recording-a-podcast-in-a-studio-40348-large.mp4",
+      title: "The Evolving Man",
+      views: "2M+ Views",
+      wistiaId: "9pe3on5x5s",
       platform: "TikTok"
     },
     {
       id: 4,
-      title: "Founder Pitch Breakdown",
-      views: "77K Views",
-      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&q=80",
-      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-playing-a-mixing-console-40342-large.mp4",
+      title: "Sourcery",
+      views: "30K+ Views",
+      wistiaId: "tni2sji1uc",
       platform: "Reels"
     }
   ];
@@ -186,37 +182,44 @@ const IntroducingUs = () => {
             </div>
           </div>
 
-          {/* Sub-Grid (9:16 Shorts Engine) with Hover silent mp4 loops */}
+          {/* Sub-Grid (9:16 Shorts Engine) with Wistia Video Embeds */}
           <div ref={cardsWrapperRef} className="shorts-container">
             <div className="shorts-grid">
               {shorts.map((s) => (
                 <div 
                   key={s.id} 
                   className="short-card"
-                  onMouseEnter={() => setHoveredShort(s.id)}
-                  onMouseLeave={() => setHoveredShort(null)}
                 >
-                  <div className="short-platform-icon">
+                  <div className="short-platform-icon" style={{ zIndex: 4 }}>
                     {s.platform === 'YouTube' && '▶'}
                     {s.platform === 'LinkedIn' && 'in'}
                     {s.platform === 'TikTok' && '🎵'}
                     {s.platform === 'Reels' && '📸'}
                   </div>
 
-                  {hoveredShort === s.id ? (
-                    <video 
-                      src={s.videoUrl} 
-                      className="short-video-loop" 
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline 
-                    />
-                  ) : (
-                    <img src={s.image} alt={s.title} />
-                  )}
+                  <iframe 
+                    src={`https://fast.wistia.net/embed/iframe/${s.wistiaId}?videoFoam=true&autoPlay=true&silentAutoPlay=true&loop=true&playbar=false&smallPlayButton=false&volumeControl=false&fullscreenButton=false&controlsVisibleOnLoad=false&endVideoBehavior=loop`}
+                    title={s.title}
+                    allow="autoplay; fullscreen"
+                    allowTransparency="true"
+                    frameBorder="0"
+                    scrolling="no"
+                    className="wistia_embed short-video-loop"
+                    name="wistia_embed"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 'none',
+                      borderRadius: 'inherit',
+                      zIndex: 1
+                    }}
+                  />
 
-                  <div className="short-card-overlay">
+                  <div className="short-card-overlay" style={{ pointerEvents: 'none' }}>
                     <span className="short-views-badge">{s.views}</span>
                     <h4 className="short-card-title">{s.title}</h4>
                   </div>
