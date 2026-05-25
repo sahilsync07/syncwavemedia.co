@@ -1,56 +1,100 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
     {
-      question: 'What kind of content do you specialize in?',
-      answer: 'We specialize in high-performance video content for personal brands and businesses. This includes YouTube videos, podcasts, and social media shorts that are strategically designed to maximize engagement and authority.'
+      question: 'How long is the onboarding process?',
+      answer: 'Our typical onboarding process takes about 7-10 business days. We coordinate visual branding alignments, map out your first content cycle, and ship pre-configured studio recording packages directly to you.'
     },
     {
-      question: 'How long does the typical production process take?',
-      answer: 'Our typical turnaround time for a single video project is around 7-10 business days. For ongoing podcast management, we work with a weekly schedule to ensure consistent delivery.'
+      question: 'What equipment do we need on our end?',
+      answer: 'We deliver complete hardware packages including broadcast-grade microphones, studio-grade LED lighting, acoustic treatment guides, and zero-latency local recording setups so you look and sound pristine.'
     },
     {
-      question: 'Can you help with distribution as well?',
-      answer: 'Yes! We don’t just produce the content; we also help you optimize and distribute it across all major platforms, including YouTube, Instagram, TikTok, and LinkedIn.'
+      question: 'Do you handle distribution to all channels?',
+      answer: 'Yes. We manage multi-channel syndicate programs across YouTube, Spotify, Apple Podcasts, LinkedIn, and Twitter/X. Every output is optimized specifically for the target platform algorithms.'
     },
     {
       question: 'What is the pricing model?',
-      answer: 'Our pricing depends on the scope and frequency of the projects. We offer both project-based and retainer-based options. Book a call with us to get a custom quote for your needs.'
+      answer: 'We operate on flat monthly retainer plans structured around your content frequency and syndication scope. No hidden hourly fees. Simply predictable premium production.'
     }
   ];
 
   return (
-    <section id="faqs" className="section-padding faq-section">
-      <div className="container scroll-reveal">
-        <div className="section-header">
-          <h2 className="text-gradient">Frequently Asked Questions</h2>
-          <p>
-            Everything you need to know about scaling your content with SyncwaveMedia.
-          </p>
+    <section id="faq" className="section-padding bg-dots">
+      <div className="glow-orb glow-indigo-orb" style={{ top: '10%', left: '-10%' }} />
+      
+      <div className="container faq-container">
+        {/* Header */}
+        <div className="section-header centered">
+          <span className="badge">FAQ</span>
+          <h2 className="text-gradient-white" style={{ fontSize: 'clamp(28px, 4.5vw, 48px)' }}>
+            Frequently Asked Questions
+          </h2>
         </div>
 
+        {/* Accordion Stack */}
         <div className="faq-list">
-          {faqs.map((faq, idx) => (
-            <div key={idx} className={`glass-card faq-item ${openIndex === idx ? 'active' : ''}`}>
-               <button 
-                  onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div 
+                key={idx} 
+                className={`premium-card faq-item ${isOpen ? 'active' : ''}`}
+                style={{
+                  borderTop: isOpen ? '1.5px solid var(--accent-indigo)' : '1px solid rgba(255, 255, 255, 0.05)',
+                  transition: 'border-color 0.4s var(--ease-premium)'
+                }}
+              >
+                <button 
+                  onClick={() => setOpenIndex(isOpen ? -1 : idx)}
                   className="faq-button"
-               >
+                  aria-expanded={isOpen}
+                >
                   <span className="faq-question">{faq.question}</span>
-                  <div className="faq-icon">
-                     <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                     </svg>
+                  <div className="faq-toggle-icon">
+                    {/* Plus / Minus SVG indicator */}
+                    <svg 
+                      width="18" 
+                      height="18" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      style={{
+                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.4s var(--ease-premium)'
+                      }}
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
                   </div>
-               </button>
-               <div className="faq-answer">
-                  {faq.answer}
-               </div>
-            </div>
-          ))}
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      className="faq-answer-wrapper"
+                    >
+                      <div className="faq-answer-content">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
